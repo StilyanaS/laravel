@@ -11,9 +11,10 @@
             <h5 class="card-title">{{$book->title}} {{$book->id}}</h5>
             <p class="card-text">Autor {{$book->author}}</p>
             <p class="card-text">Año de publicación: {{$book->post_year}}</p>
-            <a href="/bookdetails/{{$book->id}}" class="btn btn-primary">Show data</a>
-            <a href="/updateBook/{{$book->id}}" class="btn btn-primary">Edit data</a>
-            <a href="/deleteBook/{{$book->id}}" class="btn btn-primary d-inline">Delete book</a>
+            <a href="/bookdetails/{{$book->id}}" class="btn btn-primary">Mostrar detalle</a>
+            <a href="/updateBook/{{$book->id}}" class="btn btn-primary">Editar</a>
+            <a href="/deleteBook/{{$book->id}}" class="btn btn-primary d-inline">Borrar</a>
+            <a href="/newLoan/{{$book->id}}" class="btn btn-primary d-inline">Crear prestamo</a>
         </div>
     </div>
     @endforeach

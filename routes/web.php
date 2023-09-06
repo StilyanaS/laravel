@@ -26,5 +26,11 @@ Route::get('/booksList', [LibroController::class,'showBookList']);
 Route::get('/bookdetails/{id}', [LibroController::class,'showBook']);
 Route::get('/test', [LibroController::class,'testLoan']);
 
-Route::get('/newLoan', [PrestamoController::class,'newLoan']);
-Route::post('/loanCreated', [PrestamoController::class,'loanCreated'])-> name('loanCreated');
+Route::get('/newLoan/{id}', [LibroController::class,'newLoan']);
+Route::post('/loanCreated', [LibroController::class,'loanCreated'])-> name('loanCreated');
+Route::get('/allLoans',[PrestamoController::class,'showAll']);
+Route::get('/loanDetail/{id}',[PrestamoController::class,'loanDetail']);
+Route::get('/updateLoan/{id}',[PrestamoController::class,'updateLoan'])-> name('updateLoan');
+Route::post('/updatedLoan',[PrestamoController::class,'updatedLoan'])-> name('updatedLoan');
+Route::get('/deleteLoan/{id}', [PrestamoController::class,'deleteLoan']);
+Route::get('/addLoan', [PrestamoController::class,'addLoan']);

@@ -41,6 +41,15 @@ class LibroController extends Controller
         return view('bookDetail', compact('book'));
     }
     public function testLoan(){
-        dd(PrestamoModel::find(1)->user);
+        dd(PrestamoModel::find(1));
+    }
+    public function newLoan($id){
+        $book = Libro::findId($id);
+        return view('newLoan', compact('book'));
+    }
+    public function loanCreated(Request $request){
+        $loan = PrestamoModel::create($request);
+        return view('loanCreated', compact('loan'));
     }
 }
+

@@ -15,15 +15,13 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->unsignedBigInteger('user');
-            $table->foreign('user')->references('id')->on('users');
-
             $table->unsignedBigInteger('book');
-            $table->foreign('book')->references('id')->on('libros');
-           
+            $table->foreign('book')->references('id')->on('libros')->onDelete('cascade');
+
             $table->string('dateLoan');
             $table->string('dateReturn');
             $table->string('available');
+
         });
     }
 
@@ -32,6 +30,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        dropConstrainedForeignId('user');
+        dropConstrainedForeignId('book');
         Schema::dropIfExists('prestamos');
     }
 };

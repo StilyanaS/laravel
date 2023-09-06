@@ -1,31 +1,33 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\PrestamoModel;
 use App\Models\Libro;
 class PrestamoController extends Controller
 {
-    public function newLoan(){
-        return view('newLoan');
+    public function showAll(){
+        $loans = PrestamoModel::showAll();
+        return view('allLoans', compact('loans'));
     }
-    public function addLoan(){
-        $books = Libro::all();
-        foreach($books as $book){
-            if($book->title == 'Title'){  
-                if ($book->available == 'sí'){
-                    PrestamosModel::create($book->title);
-                    return view('loanCreated')->with('book', $book->title);
-                } else {
-                   // return 'El libro no está disponible';
-                   return view('hola');
-                }
-            }
-        }
+    public function loanDetail($id){
+        $loan = PrestamoModel::findId($id);
+        return view('loanDetail', compact('loan'));
     }
-    public function loanCreated(Request $request){
-        $loan = PrestamoModel::create($request);
-        return view('loanCreated', compact('loan'));
+    public function updateLoan($id){
+        $loan = PrestamoModel::find($id);
+        Session::put('id', $id);
+        return view('editLoan', compact('loan'));
+    }
+    public function updatedLoan(Request $request){
+        $id = Session::get('id');
+        PrestamoModel::updatedLoan($id, $request);
+        return Redirect::to('/allLoans');
+    }
+    public function deleteLoan($id){
+        $loan = PrestamoModel::deleteLoan($id);
+        return Redirect::to('/allLoans');
     }
 }

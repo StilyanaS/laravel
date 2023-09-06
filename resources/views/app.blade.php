@@ -22,7 +22,7 @@
           <a class="nav-link" href="/addBook">Añadir libro</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/newLoan">Crear prestamo</a>
+          <a class="nav-link" href="/allLoans">Todos los prestamos</a>
         </li>
     </div>
   </div>
